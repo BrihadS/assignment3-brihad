@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pokémon Memory Game</title>
+  <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Raleway:ital,wght@0,100..900;1,100..900&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body class="light">
+
+  <header>
+    <h1>Pokémon Memory Game</h1>
+  </header>
+
+  <!-- controls -->
+  <div id="controls">
+    <div id="difficulty-group">
+      <label>Difficulty:</label>
+      <button class="diff-btn active" data-diff="easy">Easy</button>
+      <button class="diff-btn" data-diff="medium">Medium</button>
+      <button class="diff-btn" data-diff="hard">Hard</button>
+    </div>
+    <div id="action-group">
+      <button id="start-btn">Start</button>
+      <button id="reset-btn">Reset</button>
+    </div>
+    <div id="theme-group">
+      <label>Theme:</label>
+      <button id="theme-btn">🌙 Dark</button>
+    </div>
+  </div>
+
+  <!-- status bar -->
+  <div id="status-bar">
+    <span>⏱ Time: <strong id="timer-display">--</strong></span>
+    <span>🖱 Clicks: <strong id="clicks-display">0</strong></span>
+    <span>✅ Matched: <strong id="matched-display">0</strong></span>
+    <span>❌ Left: <strong id="left-display">0</strong></span>
+    <span>Total: <strong id="total-display">0</strong></span>
+  </div>
+
+  <!-- loading -->
+  <div id="loading" class="hidden">
+    <div class="spinner"></div>
+    <p>Loading Pokémon...</p>
+  </div>
+
+  <!-- game over overlay -->
+  <div id="overlay" class="hidden">
+    <div id="overlay-content">
+      <h2 id="overlay-title"></h2>
+      <p id="overlay-msg"></p>
+      <button id="overlay-btn">Play Again</button>
+    </div>
+  </div>
+
+  <!-- game grid -->
+  <div id="game_grid"></div>
+  <div style="text-align:center; padding: 16px 0 32px;">
+    <span id="powerup-container">⚡ Power-up: <button id="powerup-btn" disabled>Peek!</button></span>
+  </div>
+
+  <script src="index.js"></script>
+</body>
+</html>

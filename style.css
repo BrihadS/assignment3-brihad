@@ -1,0 +1,328 @@
+/*RESET & BASE*/
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body 
+{
+  font-family: "Audiowide", sans-serif;
+  min-height: 100vh;
+  transition: background 0.3s, color 0.3s;
+}
+
+/*THEMES*/
+body.light 
+{
+  background: #ffffff;
+  color: #111111;
+}
+
+body.dark 
+{
+  background: #111111;
+  color: #f0f0f0;
+}
+
+/*HEADER*/
+header 
+{
+  background: #111111;
+  text-align: center;
+  padding: 18px 10px;
+}
+body.dark header {
+  background: #000000;
+  border-bottom: 2px solid #444;
+}
+header h1 {
+  font-size: clamp(14px, 3vw, 24px);
+  color: #ffffff;
+  letter-spacing: 2px;
+}
+
+/* CONTROLS */
+#controls 
+{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+#difficulty-group, #action-group, #theme-group 
+{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+#controls label 
+{
+  font-weight: 700;
+  font-size: 14px;
+}
+
+button 
+{
+  cursor: pointer;
+  border: 2px solid #111;
+  border-radius: 6px;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  padding: 7px 16px;
+  transition: transform 0.1s, filter 0.1s;
+  background: #ffffff;
+  color: #111111;
+}
+
+body.dark button 
+{
+  border-color: #aaa;
+  background: #222;
+  color: #f0f0f0;
+}
+
+button:hover:not(:disabled) { transform: translateY(-2px); filter: brightness(0.85); }
+button:active:not(:disabled) { transform: translateY(0); }
+
+.diff-btn { background: #e0e0e0; color: #111; border-color: #999; }
+body.dark .diff-btn { background: #333; color: #ccc; border-color: #666; }
+
+.diff-btn.active 
+{
+  background: #111111;
+  color: #ffffff;
+  border-color: #111;
+}
+
+body.dark .diff-btn.active 
+{
+  background: #ffffff;
+  color: #111111;
+  border-color: #fff;
+}
+
+#start-btn { background: #111; color: #fff; border-color: #111; }
+#reset-btn { background: #555; color: #fff; border-color: #555; }
+#theme-btn { background: #111; color: #fff; border-color: #111; }
+
+body.dark #start-btn { background: #fff; color: #111; border-color: #fff; }
+body.dark #reset-btn { background: #aaa; color: #111; border-color: #aaa; }
+body.dark #theme-btn { background: #fff; color: #111; border-color: #fff; }
+
+/* STATUS BAR */
+#status-bar 
+{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 10px 24px;
+  margin: 12px auto;
+  background: #d0d0d0;
+  border-top: 2px solid #aaa;
+  border-bottom: 2px solid #aaa;
+  font-size: 14px;
+  font-weight: 700;
+  width: 100%;
+  color: #111;
+}
+
+body.dark #status-bar 
+{
+  background: #2a2a2a;
+  border-color: #555;
+  color: #f0f0f0;
+}
+
+#status-bar strong { color: #111; }
+body.dark #status-bar strong { color: #fff; }
+
+#powerup-btn 
+{
+  background: #111;
+  color: #fff;
+  padding: 4px 12px;
+  font-size: 13px;
+  border-radius: 4px;
+  border: 2px solid #111;
+}
+
+body.dark #powerup-btn { background: #fff; color: #111; border-color: #fff; }
+#powerup-btn:disabled { background: #999; color: #ccc; border-color: #999; cursor: not-allowed; }
+body.dark #powerup-btn:disabled { background: #444; color: #777; border-color: #444; }
+
+/* LOADING */
+#loading 
+{
+  text-align: center;
+  padding: 30px;
+}
+
+.spinner 
+{
+  width: 44px; height: 44px;
+  border: 5px solid #111;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin: 0 auto 12px;
+}
+
+body.dark .spinner { border-color: #fff; border-top-color: transparent; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* OVERLAY */
+#overlay 
+{
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+#overlay.hidden { display: none; }
+
+#overlay-content 
+{
+  background: #fff;
+  border: 3px solid #111;
+  border-radius: 12px;
+  padding: 40px 50px;
+  text-align: center;
+  max-width: 380px;
+  width: 90%;
+  box-shadow: 6px 6px 0 #111;
+}
+
+body.dark #overlay-content { background: #1a1a1a; border-color: #fff; box-shadow: 6px 6px 0 #555; color: #f0f0f0; }
+
+#overlay-title 
+{
+  font-family: 'Press Start 2P', cursive;
+  font-size: 18px;
+  margin-bottom: 16px;
+  color: #111;
+}
+
+body.dark #overlay-title { color: #fff; }
+
+#overlay-msg { font-size: 15px; margin-bottom: 24px; line-height: 1.6; }
+
+#overlay-btn { background: #111; color: #fff; padding: 12px 28px; font-size: 15px; border-radius: 6px; border: 2px solid #111; }
+body.dark #overlay-btn { background: #fff; color: #111; border-color: #fff; }
+
+/* GAME GRID */
+#game_grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  padding: 16px 16px 40px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+/* CARDS */
+.card {
+  width: 120px;
+  height: 120px;
+  position: relative;
+  perspective: 1000px;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.card-inner 
+{
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.5s ease;
+  border-radius: 10px;
+}
+
+.card.flip .card-inner { transform: rotateY(180deg); }
+
+.front_face, .back_face 
+{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 3px solid #111;
+  box-shadow: 3px 3px 0 #555;
+}
+
+body.dark .front_face,
+
+body.dark .back_face 
+{
+  border-color: #aaa;
+  box-shadow: 3px 3px 0 #555;
+}
+
+.front_face 
+{
+  transform: rotateY(180deg);
+  background: #f5f5f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+body.dark .front_face { background: #222; }
+
+.front_face img 
+{
+  width: 85%;
+  height: 85%;
+  object-fit: contain;
+}
+
+.back_face 
+{
+  background: #222;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+body.dark .back_face { background: #000; }
+
+.back_face img 
+{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card.matched .front_face 
+{
+  border-color: #555;
+  background: #e0e0e0;
+  opacity: 0.6;
+}
+
+body.dark .card.matched .front_face 
+{
+  border-color: #888;
+  background: #333;
+}
+
+/* peek animation */
+.card.peeking .card-inner { transform: rotateY(180deg); }
+
+/* HIDDEN */
+.hidden { display: none !important; }
